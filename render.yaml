@@ -1,24 +1,9 @@
-# 🔌 API Documentation
-
-## Overview
-The **AI Health Diagnostics Backend API** is built using FastAPI. It serves prediction endpoints, performs automatic input validation via Pydantic, and generates interactive OpenAPI documentation.
-
-* **Base URL:** `http://127.0.0.1:8000`
-* **Swagger UI Docs:** `http://127.0.0.1:8000/docs`
-* **ReDoc Format:** `http://127.0.0.1:8000/redoc`
-
----
-
-## API Endpoints
-
-### 1. Root Health Check
-Verifies that the API service is active and accessible.
-
-* **Method:** `GET`
-* **Endpoint:** `/`
-* **Response (200 OK):**
-```json
-{
-  "status": "Active",
-  "message": "Health Risk Prediction Service Online"
-}
+services:
+  - type: web
+    name: ai-health-backend
+    env: python
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
