@@ -37,3 +37,5 @@ ai-health-predictor/
 ├── health_model.pkl         # Trained model binary artifact
 ├── TECHNICAL_REPORT.md      # Detailed technical justification & architecture
 └── README.md                # Project documentation
+```
+## streamlit link-https://aihealthrecommenderkiet-adoefnendp6nkhb4jpvf6w.streamlit.app/
