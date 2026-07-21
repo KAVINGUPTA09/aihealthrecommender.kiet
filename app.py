@@ -38,10 +38,11 @@ if submitted:
         "cholesterol": cholesterol
     }
     
-    API_URL = "http://127.0.0.1:8000/predict"
+    # Updated to your live Render endpoint (increased timeout to 15s to handle Render free-tier cold starts)
+    API_URL = "https://aihealthrecommender-kiet-1.onrender.com/predict"
     
     try:
-        response = requests.post(API_URL, json=payload, timeout=5)
+        response = requests.post(API_URL, json=payload, timeout=15)
         
         if response.status_code == 200:
             data = response.json()
@@ -62,5 +63,8 @@ if submitted:
         else:
             st.error(f"API Error: {response.text}")
             
-    except requests.exceptions.ConnectionError:
-        st.error("Error connecting to backend API! Ensure FastAPI is running on `http://127.0.0.1:8000`.")
+    except requests.exceptions.RequestException:
+        st.error(
+            "Error connecting to backend API! If the service was inactive, "
+            "Render free instances may take 30–50 seconds to wake up. Please try again in a moment."
+        )
